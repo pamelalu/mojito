@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 
 from api import app, restApi
-from api.email import Email
+from api.model.email import Email
 
 #@app.route("/email", methods=['POST'])
 
@@ -17,8 +17,9 @@ class SendEmail(Resource):
         #try:
 
         email = Email(args)
-        email.send()
 
+        email.send()
+        print args
         return args
         #except:
         #    return {}

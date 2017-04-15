@@ -1,5 +1,5 @@
 from api import app
-from api.email import Email
+from api.model.email import Email
 
 import unittest
 import json
@@ -8,6 +8,7 @@ class TestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
+        self.app.testing = True
 
         self.test_email = {
             "to": "pamelastone@gmail.com",

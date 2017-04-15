@@ -45,3 +45,8 @@ End with an example of getting some data out of the system or using it for a lit
 ```
 python test.py
 ```
+
+### TO DO
+- Set up configs by environment 
+- Store API keys securely
+- organize tests better
