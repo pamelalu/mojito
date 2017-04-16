@@ -8,7 +8,6 @@ setup(
     install_requires=[
         'validate_email',
         'requests',
-        'jsonschema',
         'html2text',
         'flask_restful',
         'flask'

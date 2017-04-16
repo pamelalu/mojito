@@ -1,6 +1,4 @@
 from api import app
-from jsonschema import validate
-from api.schema import emailSchema
 from html2text import html2text
 from validate_email import validate_email
 from mailgun import Mailgun
@@ -9,8 +7,6 @@ from mandrill import Mandrill
 class Email(object):
     def __init__(self, args):
         try:
-            validate(args, emailSchema)
-
             if validate_email(args['to']) and validate_email(args['from']):
                 self.to_email = args['to']
                 self.to_name = args['to_name']

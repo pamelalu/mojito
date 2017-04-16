@@ -48,12 +48,23 @@ class TestCase(unittest.TestCase):
         assert data._status_code == 405
 
     def test_api_post_email(self):
-        return_data = self.app.post('/email', data = json.dumps(self.test_email), content_type='application/json')
+        r = self.app.post('/email', data = json.dumps(self.test_email), content_type='application/json')
         #assert return_data.data['to'] == 'pamelastone@gmail.com'
         #assert return_data.data == '{"test":"pamtest"}'
         #print return_data.__dict__
-        assert b'pamelastone' in return_data.data
-        assert return_data._status_code == 200
+        #assert b'pamelastone' in return_data.data
+        assert r._status_code == 200
+
+        self.test_email_bad = {
+            "to": "pamelastone@gmail.com",
+            "to_name": "Pam Lu",
+            "from": "pamela.stone@gmail.com",
+            "from_name": "Pam Sender"
+        }
+
+        r = self.app.post('/email', data=json.dumps(self.test_email_bad), content_type='application/json')
+        assert r._status_code == 400
+
 
 if __name__ == '__main__':
     unittest.main()

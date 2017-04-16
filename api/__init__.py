@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 app.config['DEBUG'] = True
 app.config['TESTING'] = False
+app.config['BUNDLE_ERRORS'] = True
 
 app.config['MAIL_PROVIDER'] = 'MAILGUN'
 
