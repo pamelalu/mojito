@@ -29,10 +29,7 @@ virtualenv venv
 
 then install packages
 ```
-pip install Flask
-pip install flask-restful
-pip install requests
-pip install html2text
+pip install -r requirements.txt
 ```
 
 Finally run
