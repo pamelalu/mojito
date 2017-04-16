@@ -1,8 +1,8 @@
-
 from api import app
 from mailgun import Mailgun
 from jsonschema import validate
 from api.schema import emailSchema
+import html2text
 
 class Email(object):
     def __init__(self, args):
@@ -12,7 +12,7 @@ class Email(object):
         self.from_email = args['from']
         self.from_name = args['from_name']
         self.subject = args['subject']
-        self.body = args['body']
+        self.body = html2text.html2text(args['body'])
 
         try:
             self.is_valid = self.validate_email(args, emailSchema)

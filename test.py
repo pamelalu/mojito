@@ -16,7 +16,7 @@ class TestCase(unittest.TestCase):
             "from": "pamela.stone@gmail.com",
             "from_name": "Pam Sender",
             "subject": "A Message",
-            "body": "1"
+            "body": "<h1>Your Bill</h1><p>$10</p>"
         }
 
     def test_model_email(self):
@@ -26,7 +26,7 @@ class TestCase(unittest.TestCase):
         assert email.from_email == self.test_email['from']
         assert email.from_name == self.test_email['from_name']
         assert email.subject == self.test_email['subject']
-        assert email.body == self.test_email['body']
+        assert b'Your Bill' in email.body
         assert email.is_valid == True
 
     def test_api_get_email(self):
