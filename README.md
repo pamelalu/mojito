@@ -1,14 +1,16 @@
 # Project Mojito
 
-A HTTP service that accepts POST requests with JSON data
+A HTTP emailing service that delivers email via Mailgun or Mandrill
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+You can download the code at https://github.com/pstone/mojito
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You will need Python 2.6 or newer
 
 ```
 python -v
@@ -16,29 +18,36 @@ python -v
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Set up virtual env
 
 ```
+cd mojito
 sudo pip install virtualenv
 virtualenv venv
 . venv/bin/activate
+```
+
+then install packages
+```
 pip install Flask
 pip install flask-restful
-pip install jsonschema
 pip install requests
+pip install html2text
+```
+
+Finally run
+```
 export FLASK_APP=./api/routes.py
 flask run
 ```
 
-And repeat
+### API Endpoints
+POST /email
 
+Sample request:
 ```
-until finished
+curl -H "Content-Type: application/json" -X POST -d '{"to":"pamelastone@gmail.com","to_name":"Pam Lu","from":"pamela.stone@gmail.com", "from_name": "Pam Sender", "subject": "A Message", "body": "<h1>Your Bill</h1><p>$10</p>"}' http://127.0.0.1:5000/email
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ### Testing
 
@@ -46,5 +55,7 @@ End with an example of getting some data out of the system or using it for a lit
 python test.py
 ```
 
-### TO DO
-- Get API keys out of github
+### To do
+- Create env specific configs
+- Store API keys outside repo
+- Better error handling and messages
