@@ -9,7 +9,7 @@ class TestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
-        self.app.testing = True
+        app.config['TESTING'] = True
 
         self.test_email = {
             "to": "pamelastone@gmail.com",

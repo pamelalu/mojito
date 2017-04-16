@@ -30,6 +30,8 @@ class Email(object):
         if app.config['TESTING'] != True:
             if app.config['MAIL_PROVIDER'] == 'MAILGUN':
                 emailProvider = Mailgun(app.config['MAILGUN_API_SEND'], app.config['MAILGUN_API_KEY'])
-                emailProvider.send_message(self)
-            #elif app.config['MAIL_PROVIDER'] == 'MANDRILL':
-            #    Mandrill().send_message(self)
+
+            elif app.config['MAIL_PROVIDER'] == 'MANDRILL':
+                emailProvider = Mandrill(app.config['MANDRILL_API_SEND'], app.config['MANDRILL_API_KEY'])
+
+            emailProvider.send_message(self)
