@@ -17,9 +17,7 @@ class SendEmail(Resource):
         #try:
 
         email = Email(args)
-
         email.send()
-        print args
         return args
         #except:
         #    return {}

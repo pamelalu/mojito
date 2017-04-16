@@ -1,5 +1,6 @@
 from api import app
 from api.model.email import Email
+from api.model.mailgun import Mailgun
 
 import unittest
 import json
@@ -28,6 +29,19 @@ class TestCase(unittest.TestCase):
         assert email.subject == self.test_email['subject']
         assert b'Your Bill' in email.body
         assert email.is_valid == True
+
+        email = Email({"to":"test"})
+        assert email.is_valid == False
+
+        email = Email({"to": "pamelastone@gmail.com"})
+        assert email.is_valid == False
+
+    def test_model_mailgun(self):
+        test_url = 'test_url'
+        test_key = 'test_key'
+        mailgun = Mailgun(test_url, test_key)
+        assert mailgun.api_url == test_url
+        assert mailgun.api_key == test_key
 
     def test_api_get_email(self):
         data = self.app.get('/email')

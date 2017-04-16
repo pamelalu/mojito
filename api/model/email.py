@@ -1,36 +1,35 @@
 from api import app
-from mailgun import Mailgun
 from jsonschema import validate
 from api.schema import emailSchema
-import html2text
+from html2text import html2text
+from validate_email import validate_email
+from mailgun import Mailgun
+from mandrill import Mandrill
 
 class Email(object):
     def __init__(self, args):
-
-        self.to_email = args['to']
-        self.to_name = args['to_name']
-        self.from_email = args['from']
-        self.from_name = args['from_name']
-        self.subject = args['subject']
-        self.body = html2text.html2text(args['body'])
-
         try:
-            self.is_valid = self.validate_email(args, emailSchema)
+            validate(args, emailSchema)
 
+            if validate_email(args['to']) and validate_email(args['from']):
+                self.to_email = args['to']
+                self.to_name = args['to_name']
+                self.from_email = args['from']
+                self.from_name = args['from_name']
+                self.subject = args['subject']
+                self.body = html2text(args['body'])
+                self.is_valid = True
+            else:
+                self.is_valid = False
         except:
             self.is_valid = False
+
+
 
     def send(self):
         if app.config['TESTING'] != True:
             if app.config['MAIL_PROVIDER'] == 'MAILGUN':
-                Mailgun().send_message(self)
+                emailProvider = Mailgun(app.config['MAILGUN_API_SEND'], app.config['MAILGUN_API_KEY'])
+                emailProvider.send_message(self)
             #elif app.config['MAIL_PROVIDER'] == 'MANDRILL':
             #    Mandrill().send_message(self)
-
-
-    def validate_email(self, args, emailSchema):
-        try:
-            validate(args, emailSchema)
-            return True
-        except:
-            return False

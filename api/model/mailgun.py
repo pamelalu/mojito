@@ -2,9 +2,9 @@ import requests
 from api import app
 
 class Mailgun:
-    def __init__(self):
-        self.api_url = app.config['MAILGUN_SEND_ENDPOINT']
-        self.api_key = app.config['MAILGUN_API_KEY']
+    def __init__(self, api_url, api_key):
+        self.api_url = api_url
+        self.api_key = api_key
 
     def send_message(self, Email):
         data = {

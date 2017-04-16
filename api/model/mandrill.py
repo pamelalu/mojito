@@ -2,9 +2,9 @@ import requests
 from api import app
 
 class Mandrill:
-    def __init__(self):
-        self.api_url = app.config['MANDRILL_SEND_ENDPOINT']
-        self.api_key = app.config['MANDRILL_API_KEY']
+    def __init__(self, api_url, api_key):
+        self.api_url = api_url
+        self.api_key = api_key
 
     def send(self):
         try:
