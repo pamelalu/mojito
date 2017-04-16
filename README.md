@@ -47,6 +47,4 @@ python test.py
 ```
 
 ### TO DO
-- Set up configs by environment 
-- Store API keys securely
-- organize tests better
+- Get API keys out of github

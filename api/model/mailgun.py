@@ -6,13 +6,18 @@ class Mailgun:
         self.api_key = api_key
 
     def send_message(self, Email):
-        return requests.post(
-            self.api_url,
-            auth=("api", self.api_key),
-            data={
-                "from": Email.from_name + " <" + Email.from_email + ">",
-                "to": Email.to_name + " <" + Email.to_email + ">",
-                "subject": Email.subject,
-                "text": Email.body
-            }
-        )
+        try:
+            r = requests.post(
+                self.api_url,
+                auth=("api", self.api_key),
+                data={
+                    "from": Email.from_name + " <" + Email.from_email + ">",
+                    "to": Email.to_name + " <" + Email.to_email + ">",
+                    "subject": Email.subject,
+                    "text": Email.body
+                    }
+                )
+            if (r.status_code != 200):
+                print "MAILGUN API status error: " + r.status_code
+        except:
+            print "MAILGUN SEND EMAIL ERROR"
