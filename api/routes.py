@@ -1,9 +1,6 @@
-from flask import request
 from flask_restful import Resource, reqparse
 from api import app, restApi
 from api.model.email import Email
-
-
 
 class SendEmail(Resource):
     def post(self):
