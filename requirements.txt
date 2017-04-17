@@ -5,6 +5,7 @@ click==6.7
 Flask==0.12.1
 Flask-RESTful==0.3.5
 functools32==3.2.3.post2
+gunicorn==19.7.1
 html2text==2016.9.19
 inflection==0.2.0
 itsdangerous==0.24
