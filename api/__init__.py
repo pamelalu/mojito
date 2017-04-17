@@ -13,7 +13,9 @@ app.config['MAILGUN_API_SEND'] = 'https://api.mailgun.net/v3/sandbox94f6ab5904f5
 app.config['MAILGUN_API_KEY'] = 'key-066b9601c57c65b9c272a18110486770'
 
 app.config['MANDRILL_API_SEND'] = 'https://mandrillapp.com/api/1.0/messages/send.json'
-app.config['MANDRILL_API_KEY'] = 'ZG-Uoq8cxKE7CT-noEMtfw'
+#this is a test key, no email will be sent
+app.config['MANDRILL_API_KEY'] = 'pcjAk56VhMGrpqz5qWHGLg'
+
 
 restApi = Api(app)
 
