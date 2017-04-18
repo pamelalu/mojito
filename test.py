@@ -49,10 +49,6 @@ class TestCase(unittest.TestCase):
 
     def test_api_post_email(self):
         r = self.app.post('/email', data = json.dumps(self.test_email), content_type='application/json')
-        #assert return_data.data['to'] == 'pamelastone@gmail.com'
-        #assert return_data.data == '{"test":"pamtest"}'
-        #print return_data.__dict__
-        #assert b'pamelastone' in return_data.data
         assert r._status_code == 200
 
         self.test_email_bad = {

@@ -25,10 +25,10 @@ class Mandrill:
             content = json.loads(r._content)
 
             if r.status_code != 200:
-                print "Mandrill API status error: " + r.status_code
+                return "Mandrill API status error: " + r.status_code
             if content[0]['status'] == 'rejected':
-                print "Mandrill API status error: " + content[0]['status']
+                return "Mandrill API status error: " + content[0]['status']
         except:
-            print "Mandrill Send Mail Error"
+            return "Mandrill Send Mail Error"
 
 

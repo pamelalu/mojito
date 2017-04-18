@@ -2,18 +2,24 @@
 
 A HTTP emailing service that delivers email via Mailgun or Mandrill
 
+## Built With
+
+* [Flask](http://flask.pocoo.org) - A Python micro framework 
+
 
 ## Getting Started
 
-You can download the code at https://github.com/pstone/mojito
-
+```
+git clone https://github.com/pstone/mojito
+```
 
 ### Prerequisites
 
-You will need Python 2.6 or newer
+Python 2.6 or newer
 
 ```
-python -v
+$ python -V
+Python 2.7.13
 ```
 
 ### Installing
@@ -50,6 +56,18 @@ curl -H "Content-Type: application/json" -X POST -d '{"to":"pamelastone@gmail.co
 
 ```
 python test.py
+```
+
+## Deployment
+Configuration files are set up for CircleCI and Heroku.  
+
+* [CircleCI](http://circleci.com) - Deployment tool
+* [Heroku](http://heroku.com) - Application Hosting
+
+You need to update app name in circle.yml to your Heroku host name.
+```
+heroku:
+      appname: peaceful-gorge-35511
 ```
 
 ### To do

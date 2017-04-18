@@ -18,6 +18,6 @@ class Mailgun:
                     }
                 )
             if (r.status_code != 200):
-                print "MAILGUN API status error: " + r.status_code
+                return "MAILGUN API status error: " + r.status_code
         except:
-            print "MAILGUN SEND EMAIL ERROR"
+            return "MAILGUN SEND EMAIL ERROR"

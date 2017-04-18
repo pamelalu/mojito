@@ -30,4 +30,7 @@ class Email(object):
             elif app.config['MAIL_PROVIDER'] == 'MANDRILL':
                 emailProvider = Mandrill(app.config['MANDRILL_API_SEND'], app.config['MANDRILL_API_KEY'])
 
-            emailProvider.send_message(self)
+            message = emailProvider.send_message(self)
+
+            if message:
+                app.logger.error(message)
