@@ -24,11 +24,11 @@ class Email(object):
 
     def send(self):
         if app.config['TESTING'] != True:
-            if app.config['MAIL_PROVIDER'] == 'MAILGUN':
-                emailProvider = Mailgun(app.config['MAILGUN_API_SEND'], app.config['MAILGUN_API_KEY'])
-
-            elif app.config['MAIL_PROVIDER'] == 'MANDRILL':
+            if app.config['MAIL_PROVIDER'] == 'MANDRILL':
                 emailProvider = Mandrill(app.config['MANDRILL_API_SEND'], app.config['MANDRILL_API_KEY'])
+            else:
+                #default to mailgun?
+                emailProvider = Mailgun(app.config['MAILGUN_API_SEND'], app.config['MAILGUN_API_KEY'])
 
             message = emailProvider.send_message(self)
 

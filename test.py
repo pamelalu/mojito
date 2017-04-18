@@ -1,6 +1,7 @@
 from api import app
 from api.model.email import Email
 from api.model.mailgun import Mailgun
+from api.model.mandrill import Mandrill
 
 import unittest
 import json
@@ -43,6 +44,13 @@ class TestCase(unittest.TestCase):
         assert mailgun.api_url == test_url
         assert mailgun.api_key == test_key
 
+    def test_model_mandrill(self):
+        test_url = 'test_url'
+        test_key = 'test_key'
+        mandrill = Mandrill(test_url, test_key)
+        assert mandrill.api_url == test_url
+        assert mandrill.api_key == test_key
+
     def test_api_get_email(self):
         data = self.app.get('/email')
         assert data._status_code == 405
@@ -51,14 +59,23 @@ class TestCase(unittest.TestCase):
         r = self.app.post('/email', data = json.dumps(self.test_email), content_type='application/json')
         assert r._status_code == 200
 
-        self.test_email_bad = {
+        self.test_email_bad_1 = {
             "to": "pamelastone@gmail.com",
             "to_name": "Pam Lu",
             "from": "pamela.stone@gmail.com",
             "from_name": "Pam Sender"
         }
 
-        r = self.app.post('/email', data=json.dumps(self.test_email_bad), content_type='application/json')
+        self.test_email_bad_2 = {
+            "to": "pamelastone",
+            "to_name": "Pam Lu",
+            "from": "pamela.stone@gmail.com",
+            "from_name": "Pam Sender"
+        }
+
+        r = self.app.post('/email', data=json.dumps(self.test_email_bad_1), content_type='application/json')
+        assert r._status_code == 400
+        r = self.app.post('/email', data=json.dumps(self.test_email_bad_2), content_type='application/json')
         assert r._status_code == 400
 
 

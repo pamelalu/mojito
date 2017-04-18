@@ -71,6 +71,13 @@ heroku:
 ```
 
 ### To do
-- Create env specific configs
-- Store API keys outside repo
+- Create env specific configs for dev, stage and production
+- Use system config to store API keys securely
 - Better error handling and messages
+
+### Production ready
+- Use queue for incoming messages 
+- API should allow 1+ outbound emails for bulk mailing
+- Set up third-party API monitoring to ensure service is up
+- Set up application monitoring (e.g. sentry, new relic) to track errors
+- Set up system monitoring
