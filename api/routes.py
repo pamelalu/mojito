@@ -16,10 +16,10 @@ class SendEmail(Resource):
         try:
             email = Email(args)
             email.send()
-            return 200
+            return (args, 200)
         except Exception as e:
             app.logger.error('SendEmail error: '+ str(e))
-            return 400
+            return (str(e), 400)
 
 restApi.add_resource(SendEmail, '/email')
 
