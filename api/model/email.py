@@ -1,8 +1,6 @@
 from api import app
 from html2text import html2text
 from validate_email import validate_email
-from mailgun import Mailgun
-from mandrill import Mandrill
 
 class Email(object):
     def __init__(self, args):
@@ -22,15 +20,8 @@ class Email(object):
 
 
 
-    def send(self):
-        if app.config['TESTING'] != True:
-            if app.config['MAIL_PROVIDER'] == 'MANDRILL':
-                emailProvider = Mandrill(app.config['MANDRILL_API_SEND'], app.config['MANDRILL_API_KEY'])
-            else:
-                #default to mailgun?
-                emailProvider = Mailgun(app.config['MAILGUN_API_SEND'], app.config['MAILGUN_API_KEY'])
+    def send(self, emailProvider):
+        message = emailProvider.send_message(self)
 
-            message = emailProvider.send_message(self)
-
-            if message:
-                app.logger.error(message)
+        if message:
+            app.logger.error(message)
