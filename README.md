@@ -43,7 +43,16 @@ Finally run
 export FLASK_APP=./api/routes.py
 flask run
 ```
+### Email Provider
+Mailgun and Mnadrill are used for outbound mail.  
 
+To switch provider, change the config in api/__init__.py
+```
+app.config['MAIL_PROVIDER'] = 'MAILGUN'
+```
+```
+app.config['MAIL_PROVIDER'] = 'MANDRILL'
+```
 ### API Endpoints
 POST /email
 

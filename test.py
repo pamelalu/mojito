@@ -78,6 +78,5 @@ class TestCase(unittest.TestCase):
         r = self.app.post('/email', data=json.dumps(self.test_email_bad_2), content_type='application/json')
         assert r._status_code == 400
 
-
 if __name__ == '__main__':
     unittest.main()
